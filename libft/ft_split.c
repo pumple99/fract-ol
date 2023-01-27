@@ -81,8 +81,6 @@ char	**ft_split(char const *s, char c)
 	int		idx;
 	char	**str_arr;
 
-	if (s == 0)
-		return (0);
 	str_arr = make_arr((char *)s, c);
 	if (str_arr == 0)
 		return (0);

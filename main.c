@@ -11,6 +11,8 @@ static int	get_frac_argu(void)
 	in = get_next_line(0);
 	if (in == (char *)1)
 		return (print_try_again());
+	else if (in == 0)
+		return (print_possible_input());
 	else
 	{
 		in_arr = ft_split(in, ' ');
