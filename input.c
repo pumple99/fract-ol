@@ -12,7 +12,6 @@
 
 #include <limits.h>
 #include "libft/libft.h"
-#include "push_swap.h"
 
 static void	arr_swap(t_sort *arr, int a, int b)
 {

@@ -1,14 +1,7 @@
 #include <mlx.h>
 #include <math.h>
-
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
+#include <stdlib.h>
+#include "fractal.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -55,29 +48,39 @@ int	get_mandelbrot_color(int x, int y)
 		coord_x = n_x;
 		coord_y = n_y;
 	}
-	return (create(trgb(100, re * 8, re * 8, re * 8)));
+	return (create_trgb(50, re * 8, re * 8, re * 8));
+}
+
+int	key_hook(int keycode, t_temp *all)
+{
+	if (keycode == KEY_ESC)
+	{
+		mlx_destroy_window(all->mlx, all->win);
+		exit(0);
+	}
+	return (0);
 }
 
 void	draw_mandelbrot(void)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_temp	all;
 	t_data	img;
 	int		x;
 	int		y;
 	
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Mandelbrot");
-	img.img = mlx_new_image(mlx, 1200, 800);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, img.line_length, \
+	all.mlx = mlx_init();
+	all.win = mlx_new_window(all.mlx, 1920, 1080, "Mandelbrot");
+	img.img = mlx_new_image(all.mlx, 1200, 800);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, \
 	&img.endian);
 	x = -1;
-	y = -1;
 	while (++x < 1200)
 	{
+		y = -1;
 		while (++y < 800)
 			my_mlx_pixel_put(&img, x, y, get_mandelbrot_color(x, y));
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 320, 140);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(all.mlx, all.win, img.img, 320, 140);
+	mlx_key_hook(all.win, key_hook, &all);
+	mlx_loop(all.mlx);
 }

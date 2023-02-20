@@ -1,3 +1,5 @@
+#include "libft/pf_printf.h"
+
 int	print_possible_input(void)
 {
 	ft_printf("Possible Input List\n");

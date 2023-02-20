@@ -1,6 +1,8 @@
+#include <stdlib.h>
 #include "libft/gnl.h"
 #include "libft/pf_printf.h"
 #include "libft/libft.h"
+#include "fractal.h"
 
 static int	get_frac_argu(void)
 {
@@ -26,5 +28,6 @@ int	main()
 	int	e;
 
 	e = 0;
+	draw_mandelbrot();
 	get_frac_argu();
 }

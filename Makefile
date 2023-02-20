@@ -10,16 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-BONUS = checker
+NAME = fractol
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
 DEBUG_FLAGS = -g
 LIB = libft.a
 LIB_DIR = ./libft
+MLX_DIR = ./mlx
 
-SRCS_C = exit.c input.c input2.c operation.c stack.c
-SRCS_M = main.c sort.c trisection.c pile.c pile2.c
+SRCS_C = main.c draw.c print.c
+SRCS_M =
 SRCS_B = main_bonus.c
 
 OBJS_C = $(SRCS_C:.c=.o)
@@ -29,7 +29,8 @@ DEPS = $(OBJS_C:.o=.d) $(OBJS_B:.o=.d) $(OBJS_M:.o=.d) $(BONUS).d $(NAME).d
 
 $(NAME) :: $(LIB)
 $(NAME) :: $(OBJS_M) $(OBJS_C)
-	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -MMD -o $(NAME) $^ $(LIB) $(DEBUG_FLAGS)
+	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(MLX_DIR) -Lmlx -lmlx -framework OpenGL \
+	-framework AppKit -MMD -o $(NAME) $^ $(LIB) $(DEBUG_FLAGS)
 
 all : $(NAME)
 
