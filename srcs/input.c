@@ -13,64 +13,30 @@
 #include <limits.h>
 #include "libft/libft.h"
 
-static void	arr_swap(t_sort *arr, int a, int b)
+void	erase_nl(char *in)
 {
-	t_sort	temp;
+	size_t	len;
 
-	temp = arr[a];
-	arr[a] = arr[b];
-	arr[b] = temp;
+	len = ft_strlen(in);
+	if (len == 0)
+		return ;
+	else
+	{
+		if (in[len - 1] == '\n')
+			in[len - 1] = 0;
+	}
 }
 
-static void	quick(t_sort *arr, int l, int r, int sort_std)
+int	count_argu_num(char **in_arr)
 {
-	int	left;
-	int	right;
-	int	pivot;
+	int	count;
 
-	left = l;
-	right = r;
-	pivot = arr[(l + r) / 2].num[sort_std];
-	while (left <= right)
-	{
-		while (arr[left].num[sort_std] < pivot)
-			left++;
-		while (arr[right].num[sort_std] > pivot)
-			right--;
-		if (left <= right)
-		{
-			arr_swap(arr, left, right);
-			left++;
-			right--;
-		}
-	}
-	if (l < right)
-		quick(arr, l, right, sort_std);
-	if (left < r)
-		quick(arr, left, r, sort_std);
-}
-
-int	find_idx_check_dup(int total, t_sort *arr, int *e)
-{
-	int	idx;
-
-	idx = -1;
-	while (++idx < total)
-		arr[idx].num[1] = idx;
-	quick(arr, 0, total - 1, 0);
-	idx = -1;
-	while (++idx < total - 1)
-	{
-		if (arr[idx].num[0] == arr[idx + 1].num[0])
-		{
-			*e = PS_ERR_DUPLICATE_INPUT;
-			return (*e);
-		}
-		arr[idx].num[2] = idx;
-	}
-	arr[idx].num[2] = idx;
-	quick(arr, 0, total - 1, 1);
-	return (0);
+	count = 0;
+	if (!in_arr)
+		return (0);
+	while (in_arr[count])
+		count++;
+	return (count);
 }
 
 static int	is_wrong_input(const char *str)
@@ -89,7 +55,7 @@ static int	is_wrong_input(const char *str)
 	return (0);
 }
 
-int	atoi_or_exit(const char *str, int *e)
+int	is_int(const char *str)
 {
 	int			index;
 	long long	num;	
@@ -98,11 +64,11 @@ int	atoi_or_exit(const char *str, int *e)
 	if (str[0] == '-' || str[0] == '+')
 		index++;
 	if (is_wrong_input(str + index))
-		*e = PS_ERR_WRONG_INPUT;
+		return (0);
 	num = ft_atoi(str);
 	if (num > INT_MAX || num < INT_MIN)
-		*e = PS_ERR_WRONG_INPUT;
-	if (num == 0 && (str[0] != '0' || (str[1] != 0 && str[1] != ' ')))
-		*e = PS_ERR_WRONG_INPUT;
-	return ((int)num);
+		return (0);
+	if (num == 0 && str[1] != 0)
+		return (0);
+	return (1);
 }

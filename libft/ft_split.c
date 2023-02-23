@@ -101,3 +101,18 @@ char	**ft_split(char const *s, char c)
 	}
 	return (str_arr);
 }
+
+void	free_split_arr(char **str_arr)
+{
+	int	i;
+
+	if (str_arr)
+	{
+		i = -1;
+		while (str_arr[++i])
+		{
+			free(str_arr[i]);
+		}
+		free(str_arr);
+	}
+}

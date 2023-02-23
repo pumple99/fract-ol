@@ -6,21 +6,24 @@
 #    By: seunghoy <seunghoy@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/01/06 20:25:43 by seunghoy         ###   ########.fr        #
+#    Updated: 2023/02/21 18:37:00 by seunghoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
+BONUS = fractol_bonus
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
 DEBUG_FLAGS = -g
 LIB = libft.a
 LIB_DIR = ./libft
 MLX_DIR = ./mlx
+SRCS_DIR = ./srcs
+OBJ_DEPS_DIR = ./obj_deps
 
-SRCS_C = main.c draw.c print.c
-SRCS_M =
-SRCS_B = main_bonus.c
+SRCS_C = input.c hook.c draw.c color.c
+SRCS_M = main.c print.c draw_man.c input_man.c
+SRCS_B = main_bonus.c print_bonus.c draw_bonus.c input_bonus.c color_bonus.c
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_M = $(SRCS_M:.c=.o)
@@ -38,10 +41,11 @@ bonus : $(BONUS)
 
 $(BONUS) :: $(LIB)
 $(BONUS) :: $(OBJS_B) $(OBJS_C)
-	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -MMD -o $(BONUS) $^ $(LIB) $(DEBUG_FLAGS)
+	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(MLX_DIR) -Lmlx -lmlx -framework OpenGL \
+	-framework AppKit -MMD -o $(BONUS) $^ $(LIB) $(DEBUG_FLAGS)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -I. -MMD $< $(DEBUG_FLAGS)
+	$(CC) $(CFLAGS) -c -MMD $< $(DEBUG_FLAGS)
 
 $(LIB) :
 	make -C $(LIB_DIR) all
