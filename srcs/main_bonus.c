@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fractal.h"
+#include "../libft/libft.h"
+#include "../fractal.h"
 
 int	main(void)
 {
@@ -21,13 +21,13 @@ int	main(void)
 	in_arr = 0;
 	get_frac_argu_bonus(&in_arr);
 	all.type = parse_input_bonus(in_arr);
-	if (all.type == invalid)
-		return (print_possible_input_bonus());
-	if (all.type != mandelbrot)
+	if (all.type != mandelbrot && all.type != invalid)
 	{
 		all.real = ft_atoi(in_arr[1]) / (double)1000000;
 		all.imaginary = ft_atoi(in_arr[2]) / (double)1000000;
 	}
 	free_split_arr(in_arr);
+	if (all.type == invalid)
+		return (print_possible_input_bonus());
 	draw_fractal_bonus(&all);
 }

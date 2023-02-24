@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+#include "../fractal.h"
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {

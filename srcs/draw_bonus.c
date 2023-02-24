@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
-#include "mlx/mlx.h"
+#include "../fractal.h"
+#include "../mlx/mlx.h"
 
 void	draw_fractal_bonus(t_all *all)
 {	

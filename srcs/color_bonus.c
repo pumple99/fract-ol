@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+#include "../fractal.h"
 
 int	get_bonus_color(int x, int y, t_all *all)
 {

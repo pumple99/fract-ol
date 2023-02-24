@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/pf_printf.h"
+#include "../libft/pf_printf.h"
 
 int	print_possible_input_bonus(void)
 {

@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx/mlx.h"
-#include "fractal.h"
+#include "../mlx/mlx.h"
+#include "../fractal.h"
 
 static void	move_cam(t_all *all)
 {
-	if (all->move.left == 1)
-		all->pos.mid_realx -= 5 / all->pos.accum;
-	if (all->move.right == 1)
-		all->pos.mid_realx += 5 / all->pos.accum;
-	if (all->move.down == 1)
-		all->pos.mid_realy += 5 / all->pos.accum;
-	if (all->move.up == 1)
-		all->pos.mid_realy -= 5 / all->pos.accum;
+	if (all->move.left == 1 && all->pos.mid_realx > -5)
+		all->pos.mid_realx -= 10 / all->pos.accum;
+	if (all->move.right == 1 && all->pos.mid_realx < 5)
+		all->pos.mid_realx += 10 / all->pos.accum;
+	if (all->move.down == 1 && all->pos.mid_realy < 5)
+		all->pos.mid_realy += 10 / all->pos.accum;
+	if (all->move.up == 1 && all->pos.mid_realy > -5)
+		all->pos.mid_realy -= 10 / all->pos.accum;
 }
 
 int	render_frame(t_all *all)

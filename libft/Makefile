@@ -6,14 +6,14 @@
 #    By: seunghoy <seunghoy@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 16:45:12 by seunghoy          #+#    #+#              #
-#    Updated: 2023/01/13 21:05:22 by seunghoy         ###   ########.fr        #
+#    Updated: 2023/02/24 15:25:44 by seunghoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-CC = cc
-CFLAGS = -Werror -Wall -Wextra
-SRCS = ft_isalpha.c \
+NAME := libft.a
+CC := cc
+CFLAGS := -Werror -Wall -Wextra
+SRCS := ft_isalpha.c \
        ft_memcpy.c \
        ft_strlcpy.c \
        ft_toupper.c \
@@ -67,8 +67,7 @@ SRCS = ft_isalpha.c \
               pf_copy_conv2.c
        
 
-OBJS = $(SRCS:.c=.o)
-DEPS = $(OBJS:.o=.d)
+OBJS := $(SRCS:.c=.o)
 
 $(NAME) : $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
@@ -76,7 +75,7 @@ $(NAME) : $(OBJS)
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -I. -MMD $<
+	$(CC) $(CFLAGS) -c $<
 
 clean :
 	rm -rf $(OBJS) $(DEPS)
@@ -87,9 +86,5 @@ fclean : clean
 re :
 	make fclean
 	make all
-
-ifeq "$(filter clean fclean re,$(MAKECMDGOALS))" ""
--include $(DEPS)
-endif
 
 .PHONY : clean fclean re

@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx/mlx.h"
-#include "fractal.h"
+#include "../mlx/mlx.h"
+#include "../fractal.h"
 
 #define KEY_ESC 53
 #define KEY_LEFT 123

@@ -13,7 +13,7 @@
 #ifndef FRACTAL_H
 # define FRACTAL_H
 
-# define MAX_RECURSION 50
+# define MAX_RECURSION 30
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 1000
 
@@ -29,7 +29,7 @@ typedef struct s_coord
 	double	y2;
 }	t_coord;
 
-typedef enum	e_frac_type
+typedef enum e_frac_type
 {
 	mandelbrot = 0,
 	julia,
@@ -37,7 +37,7 @@ typedef enum	e_frac_type
 	bonus
 }	t_frac_type;
 
-typedef struct	s_pos
+typedef struct s_pos
 {
 	double	accum;
 	double	mid_realx;
@@ -46,7 +46,7 @@ typedef struct	s_pos
 	int		mid_y;
 }	t_pos;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
@@ -55,7 +55,7 @@ typedef struct	s_img
 	int		endian;
 }	t_img;
 
-typedef	struct	s_move
+typedef struct s_move
 {
 	int	left;
 	int	right;
@@ -63,7 +63,7 @@ typedef	struct	s_move
 	int	down;
 }	t_move;
 
-typedef struct	s_all
+typedef struct s_all
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -85,15 +85,13 @@ void	draw_fractal(t_all *all);
 //_bonus
 void	draw_fractal_bonus(t_all *all);
 
-
 //color.c
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-int     create_trgb(int t, int r, int g, int b);
-int     get_mandelbrot_color(int x, int y, t_all *all);
+int		create_trgb(int t, int r, int g, int b);
+int		get_mandelbrot_color(int x, int y, t_all *all);
 int		get_julia_color(int x, int y, t_all *all);
 //_bonus
 int		get_bonus_color(int x, int y, t_all *all);
-
 
 //hook.c
 int		destroy(t_all *all);
@@ -101,12 +99,10 @@ int		key_down(int keycode, t_all *all);
 int		key_up(int keycode, t_all *all);
 int		mouse_hook(int mousecode, int x, int y, t_all *all);
 
-
 //print.c
-int     print_possible_input(void);
+int		print_possible_input(void);
 //_bonus
 int		print_possible_input_bonus(void);
-
 
 //input.c
 int		count_argu_num(char **in_arr);

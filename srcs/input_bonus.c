@@ -14,9 +14,9 @@
 #include <errno.h> //errno
 #include <stdio.h> //perror
 #include <string.h> //strerror
-#include "fractal.h"
-#include "libft/libft.h"
-#include "libft/gnl.h"
+#include "../fractal.h"
+#include "../libft/libft.h"
+#include "../libft/gnl.h"
 
 void	get_frac_argu_bonus(char ***in_arr_p)
 {
