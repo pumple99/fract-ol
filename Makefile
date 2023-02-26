@@ -6,7 +6,7 @@
 #    By: seunghoy <seunghoy@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/02/24 15:46:23 by seunghoy         ###   ########.fr        #
+#    Updated: 2023/02/26 15:29:14 by seunghoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,6 @@ $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c
 $(LIB) :
 	make -C $(LIB_DIR) all
 	cp $(LIB_DIR)/$(LIB) $(LIB)
-
-$(CHANGABLE_HEADERS) :
 
 clean :
 	make -C $(LIB_DIR) clean

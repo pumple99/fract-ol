@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 20:32:13 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/02/04 20:32:15 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/02/26 22:12:39 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef enum e_frac_type
 {
 	mandelbrot = 0,
 	julia,
-	invalid,
-	bonus
+	bonus,
+	invalid
 }	t_frac_type;
 
 typedef struct s_pos
